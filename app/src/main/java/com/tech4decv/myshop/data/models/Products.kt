@@ -1,10 +1,10 @@
 package com.tech4decv.myshop.data.models
 
 data class Products(
-    val image : String,
-    val name : String,
-    val price : Double,
-    val seller : String,
-    val size : String,
-    val id : String
+    var id : String? = null,
+    var image : String? = null,
+    var name : String? = null,
+    var price : Double? = 0.0,
+    var seller : String? = null,
+    var size : String? = null,
 )

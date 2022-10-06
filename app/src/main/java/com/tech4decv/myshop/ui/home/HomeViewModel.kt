@@ -3,11 +3,14 @@ package com.tech4decv.myshop.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.tech4decv.myshop.data.models.Products
+import com.tech4decv.myshop.data.repository.ProductsRepository
 
 class HomeViewModel : ViewModel() {
+    private val productsRepository = ProductsRepository()
+    private val products : MutableLiveData<List<Products>> = productsRepository.getProducts()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    fun getAllProducts():  MutableLiveData<List<Products>> {
+        return  products
     }
-    val text: LiveData<String> = _text
 }
