@@ -9,6 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.tech4decv.myshop.data.models.Products
 import com.tech4decv.myshop.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
@@ -29,10 +33,27 @@ class CartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-                var productInCart = cartViewModel.getProducts()
-        Toast.makeText(requireContext(),"There are ${productInCart.size} in cart",Toast.LENGTH_LONG)
-            .show()
 
+        cartViewModel.getCartLiveData().observe(viewLifecycleOwner){
+            initCartRecyclerView()
+            showPriceOnCheckoutButton()
+        }
+        binding.checkout.setOnClickListener {
+
+        }
+    }
+
+    private fun showPriceOnCheckoutButton() {
+        val price = cartViewModel.getPrice()
+        binding.checkout.text = "Checkout $${price}"
+    }
+
+    private fun initCartRecyclerView() {
+        binding.itemsInCart.layoutManager = LinearLayoutManager(requireContext())
+        binding.itemsInCart.adapter = CartAdapter(requireContext(), cartViewModel)
+        // add line separation decorator
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.HORIZONTAL)
+        binding.itemsInCart.addItemDecoration(dividerItemDecoration)
     }
 
 

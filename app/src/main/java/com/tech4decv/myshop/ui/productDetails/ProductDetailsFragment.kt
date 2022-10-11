@@ -46,8 +46,8 @@ class ProductDetailsFragment(val products : Products) : BottomSheetDialogFragmen
             productDetailsViewModel.saveToCart(products)
             //alert user the item has been added to cart
             Toast.makeText(requireContext(),"Saved to Cart", Toast.LENGTH_LONG).show()
-            binding.addToCart.text = "Remove from Cart"
-            //change button color
+
+
         }
 
         binding.selectFavButton.setOnClickListener{
