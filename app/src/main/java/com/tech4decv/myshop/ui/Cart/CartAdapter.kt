@@ -39,7 +39,7 @@ class CartAdapter(val context : Context, val cartViewModel: CartViewModel ):Recy
 
         //increase quantity
         holder.increaseBtn.setOnClickListener {
-           cartViewModel.increaseQuantity(product).toString()
+            cartViewModel.increaseQuantity(product).toString()
         }
 
         //decrease quantity

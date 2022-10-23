@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.tech4decv.myshop.R
 import com.tech4decv.myshop.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class   HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel : HomeViewModel
@@ -36,9 +36,9 @@ class HomeFragment : Fragment() {
         menuHost.addMenuProvider(HomeMenuProvider(), viewLifecycleOwner,Lifecycle.State.RESUMED)
         
         //listen for products
-        homeViewModel.getAllProducts().observe(viewLifecycleOwner){ listOfFetchedProdects->
+        homeViewModel.getAllProducts().observe(viewLifecycleOwner){ listOfFetchedProducts->
             binding.listOfProducts.layoutManager = GridLayoutManager(requireContext(),2,)
-            binding.listOfProducts.adapter = ProductsAdapter(requireContext(),listOfFetchedProdects,childFragmentManager)
+            binding.listOfProducts.adapter = ProductsAdapter(requireContext(),listOfFetchedProducts,childFragmentManager)
 
         }
     }

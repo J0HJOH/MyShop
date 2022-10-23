@@ -1,5 +1,6 @@
 package com.tech4decv.myshop.ui.Cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,8 +38,12 @@ class CartFragment : Fragment() {
         cartViewModel.getCartLiveData().observe(viewLifecycleOwner){
             initCartRecyclerView()
             showPriceOnCheckoutButton()
+
+            binding.checkout.isEnabled = cartViewModel.getPrice() > 0.0
         }
         binding.checkout.setOnClickListener {
+            val i = Intent(requireActivity(), CheckoutActivity::class.java)
+            requireActivity().startActivity(i)
 
         }
     }

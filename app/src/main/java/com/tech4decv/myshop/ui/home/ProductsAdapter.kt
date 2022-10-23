@@ -27,7 +27,7 @@ class ProductsAdapter(
         //show product name in UI
         val products = listOfProducts[position]
         holder.productName.text =  products.name
-        //shows product image to Ui
+        //shows product image to UI
         holder.productPrice.text = "$${products.price}"
         //show image
         val imageUrl = products.image

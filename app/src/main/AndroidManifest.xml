@@ -16,8 +16,9 @@
         android:theme="@style/Theme.MyShop"
         tools:targetApi="31">
         <activity
-            android:name=".ui.productDetails.ProductDetailsActivity"
-            android:exported="false" />
+            android:name=".ui.Cart.CheckoutActivity"
+            android:exported="false"
+            android:label="Checkout"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
