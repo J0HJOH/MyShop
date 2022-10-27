@@ -1,13 +1,22 @@
 package com.tech4decv.myshop.ui.notifications
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.tech4decv.myshop.data.models.Notification
+import com.tech4decv.myshop.data.repository.NotificationRepository
 
-class NotificationsViewModel : ViewModel() {
+class NotificationsViewModel(application: Application) : AndroidViewModel(application) {
+    private val notificationsRepository = NotificationRepository(application)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    fun getAllNotifications() : MutableList<Notification>{
+        return notificationsRepository.getAllNotifications()
     }
-    val text: LiveData<String> = _text
+
+    fun deleteNotification(notification: Notification){
+        return notificationsRepository.deleteNotification(notification)
+    }
+
 }

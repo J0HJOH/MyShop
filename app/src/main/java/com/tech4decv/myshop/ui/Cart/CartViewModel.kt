@@ -1,12 +1,18 @@
 package com.tech4decv.myshop.ui.Cart
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.tech4decv.myshop.data.models.Notification
 import com.tech4decv.myshop.data.models.Products
 import com.tech4decv.myshop.data.repository.CartRepository
+import com.tech4decv.myshop.data.repository.NotificationRepository
 
-class CartViewModel : ViewModel() {
+class CartViewModel(application: Application) : AndroidViewModel(application) {
+    private val notificationRepository = NotificationRepository(application)
+
     fun getProducts(): List<Products>{
         return CartRepository.getSelectedProducts().keys.toList()
     }
@@ -37,5 +43,10 @@ class CartViewModel : ViewModel() {
 
     fun clearCart(){
         CartRepository.clearCart()
+    }
+
+    fun saveNotification(notification: Notification){
+        notificationRepository.saveNotification(notification)
+
     }
 }
