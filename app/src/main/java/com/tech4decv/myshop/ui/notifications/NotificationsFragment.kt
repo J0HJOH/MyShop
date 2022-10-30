@@ -34,7 +34,8 @@ class NotificationsFragment : Fragment() {
         val listOfNotification = notificationsViewModel.getAllNotifications()
 
         binding.listOfNotifications.layoutManager = LinearLayoutManager(requireContext())
-        binding.listOfNotifications.adapter = NotificationAdapter(requireContext(),listOfNotification)
+        binding.listOfNotifications.adapter =
+            NotificationAdapter(requireContext(),listOfNotification,notificationsViewModel)
         val dividerItemDecoration = DividerItemDecoration(requireContext(),RecyclerView.HORIZONTAL)
         binding.listOfNotifications.addItemDecoration(dividerItemDecoration)
 

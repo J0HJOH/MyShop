@@ -13,8 +13,12 @@ import com.tech4decv.myshop.R
 import com.tech4decv.myshop.data.models.Notification
 import java.util.*
 
-class NotificationAdapter(val context: Context, private val listOfNotification: MutableList<Notification>):
+class NotificationAdapter(val context: Context,
+                          private val listOfNotification: MutableList<Notification>,
+                          private val notificationsViewModel : NotificationsViewModel):
     RecyclerView.Adapter<NotificationViewHolder>(){
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.layout_notifications,parent,false)
@@ -34,11 +38,11 @@ class NotificationAdapter(val context: Context, private val listOfNotification: 
 
         //setUp popUp menu
         holder.menuButton.setOnClickListener {
-            showPopUpMenu(holder)
+            showPopUpMenu(holder, notification)
         }
     }
 
-    private fun showPopUpMenu(holder: NotificationViewHolder) {
+    private fun showPopUpMenu(holder: NotificationViewHolder, notification: Notification) {
         val popUpMenu = PopupMenu(context, holder.menuButton)
         popUpMenu.inflate(R.menu.notification_menu)
         popUpMenu.show()
@@ -46,10 +50,8 @@ class NotificationAdapter(val context: Context, private val listOfNotification: 
         popUpMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.delete_notification -> {
-                    Toast.makeText(
-                        context,
-                        "Notification Deleted", Toast.LENGTH_LONG
-                    ).show()
+                   notificationsViewModel.deleteNotification(notification)
+                    Toast.makeText(context,"Notification Deleted",Toast.LENGTH_LONG).show()
                     return@setOnMenuItemClickListener true
                 }
             }

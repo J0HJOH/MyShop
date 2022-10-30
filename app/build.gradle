@@ -61,4 +61,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
 //supports gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //firebase ui
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
 }
